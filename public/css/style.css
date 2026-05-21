@@ -1,0 +1,697 @@
+/* --- BRANDING: FRESH ZEBRA AESTHETIC --- */
+:root {
+    --primary-color: #4ba3e3;    /* Cheerful Sky Blue (Logo Background) */
+    --accent-dark: #1e2229;      /* Elegant Deep Charcoal/Ink (Logo Stripes) */
+    --bg-light: #fffcf7;         /* Aesthetic Soft Warm Ivory Cream */
+    --text-dark: #2c313a;        /* Crisp Charcoal for high-readability text */
+    --text-light: #ffffff;
+    --card-bg: #ffffff;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- GENERAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    /* THE FIX: Immersive gradient mirroring your favorite look */
+    background: linear-gradient(to bottom, #4ba3e3 0%, #2b6cb0 40%, #1a3c6d 100%);
+    background-attachment: fixed; /* Holds the canvas steady so it darkens seamlessly as you scroll down */
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- NAVIGATION BAR --- */
+header {
+    background-color: transparent; /* Changed from solid blue to let the top of the canvas flow cleanly */
+    padding: 1.2rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(75, 163, 227, 0.15);
+    backdrop-filter: blur(10px);   /* High-end frosted glass texture as you scroll over elements */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    color: var(--text-light);
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    opacity: 1;
+    color: var(--accent-dark);
+}
+
+.cta-btn {
+    background-color: var(--text-light);
+    color: var(--primary-color) !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 25px; /* Smooth badge shape */
+    font-weight: 700;
+    opacity: 1 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-light);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    /* Adjusted background alpha balance to mesh beautifully with the canvas profile */
+    background: linear-gradient(rgba(75, 163, 227, 0.4), rgba(43, 108, 176, 0.75)), url('../images/hero-bg.jpg') center/cover no-repeat;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-light);
+    padding: 0 1rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    color: #f0f7fc;
+    font-weight: 400;
+}
+
+.btn-primary {
+    background-color: var(--accent-dark);
+    color: var(--text-light);
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 30px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: #2c313a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* --- MENU SECTION --- */
+.menu-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1rem;
+}
+
+.menu-section h2 {
+    text-align: center;
+    color: var(--accent-dark);
+    margin-bottom: 3rem;
+    font-size: 2.4rem;
+    font-weight: 800;
+    position: relative;
+}
+
+/* Subtle line under the header */
+.menu-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0 auto;
+    border-radius: 2px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.menu-item {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(30, 34, 41, 0.05);
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 30px rgba(75, 163, 227, 0.15);
+}
+
+.menu-info {
+    padding: 2rem;
+}
+
+.menu-info h3 {
+    margin-bottom: 0.6rem;
+    color: var(--accent-dark);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.menu-info p {
+    font-size: 1rem;
+    color: #5a6270;
+    margin-bottom: 1.5rem;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    background-color: #f0f7fc;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+/* --- ABOUT, CONTACT & GENERAL WRAPPER --- */
+.content-wrapper {
+    max-width: 800px;
+    margin: 5rem auto;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 3.5rem;
+    box-shadow: 0 10px 30px rgba(30, 34, 41, 0.04);
+    border-left: 6px solid var(--primary-color); /* Premium Left Accent Line */
+}
+
+.content-wrapper h2 {
+    color: var(--accent-dark);
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.content-wrapper p {
+    margin-bottom: 1.5rem;
+    color: #4f5666;
+    font-size: 1.1rem;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--accent-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 6rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+/* --- DYNAMIC BACKGROUND MASCOT BOUNDARIES --- */
+header, .hero {
+    position: relative; /* This acts as a boundary box so stickers stay inside! */
+    overflow: hidden;   /* Keeps sliding zebras from spilling out into the white space */
+}
+
+#bg-pattern-container {
+    position: absolute; /* Changed from fixed to absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;          /* Puts them behind the header text/buttons */
+    pointer-events: none;
+}
+
+/* Ensure header text and nav links sit on top of the background zebras */
+nav, .hero h1, .hero p, .hero a {
+    position: relative;
+    z-index: 2;
+}
+
+.bg-sticker {
+    position: absolute;
+    /* Updated to use your new transparent background asset! */
+    background-image: url('../images/logo-removebg.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- HEADER MASCOT LOGO ALIGNMENT --- */
+.logo a {
+    display: flex;
+    align-items: center; /* Centers the zebra and the words perfectly vertically */
+    gap: 0.8rem;         /* Adds a comfortable breathing gap between mascot and text */
+}
+
+.nav-logo-img {
+    height: 40px;        /* Restricts the size so it sits elegantly inside the bar */
+    width: auto;         /* Maintains your original aspect ratio perfectly */
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1)); /* Soft pop shadow for the sticker */
+}
+
+/* --- HIRUP SCROLL EXTENSIONS --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- FIXED CHUNK 1: UNIFORM SEAMLESS CANVAS BACKGROUND --- */
+
+/* The container holding your story texts now has transparent background to expose the rich blue gradient underneath */
+.story-environment-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px 20px 20px;
+    background-color: transparent; /* THE FIX: Removed solid #1a3c6d block */
+}
+
+/* Clean modern text layout blocks sitting over the uniform background */
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #ffffff;        /* Solid crisp white card background */
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Soft drop shadow to make it lift */
+    border: 1px solid #e2e8f0;  
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-2px);
+}
+
+/* The reversed card stays white too */
+.info-card.reverse {
+    flex-direction: row-reverse;
+    background-color: #ffffff;  
+    border-color: #e2e8f0;
+}
+
+.info-card-text {
+    flex: 1.2;
+}
+
+/* --- CHUNK 2: AESTHETIC TYPOGRAPHY FOR CARDS --- */
+
+/* Heading style: Elegant & Editorial */
+.info-card-text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #1a3c6d; /* Matches your deep brand blue */
+    margin-top: 0;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+/* --- CHUNK 3: EDITORIAL ITALIC STYLE FOR DESCRIPTIONS --- */
+.info-card-text p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;          /* Makes your story and environment descriptions look beautifully scripted */
+    font-size: 1.15rem;          /* Bumped up slightly so the script is incredibly easy to read */
+    line-height: 1.8;            /* Keeps plenty of clean breathing room between lines */
+    color: #475569;              /* A smooth, soft aesthetic charcoal slate */
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Makes the bold text pop perfectly inside the aesthetic font style */
+.info-card-text p strong {
+    color: #1a3c6d;
+    font-style: normal;          /* Keeps bold words standing out straight */
+    font-weight: 700;
+}
+
+/* Media frame inside the white card */
+.info-card-media {
+    flex: 0.8;
+    height: 240px;
+    background: #f7fafc;         /* Soft off-white inside the image box */
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a0aec0;
+    font-style: italic;
+    border: 2px dashed #cbd5e0;
+}
+
+/* SCALE YOUR REAL PHOTOS COMFORTABLY */
+.section-display-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops and fits the photo perfectly inside the frame rounded corners */
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .info-card, .info-card.reverse {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+    .info-card-media {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/* --- RETRO ARCADE CABINET LAYER --- */
+/* --- FIXED CHUNK 4: ARCADE SEAMLESS BLEED --- */
+.arcade-section {
+    padding: 60px 20px 90px 20px;
+    background-color: transparent;  /* THE FIX: Removed solid color to expose smooth continuous layout canvas */
+    color: #ffffff;            
+    text-align: center;
+    margin: 0;                 
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.arcade-section h2 {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    color: #ffffff;            
+}
+
+.arcade-subtitle {
+    color: #cbd5e1;            
+    font-size: 1rem;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 16px;
+}
+
+.game-controls span span {
+    color: #63b3ed;            /* High visibility bright sky-blue for gaming stats */
+    font-weight: 700;
+}
+
+.restart-game-btn {
+    padding: 6px 14px;
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    cursor: pointer;
+    font-family: monospace;
+}
+.restart-game-btn:hover {
+    background: #00ff00;
+    color: #000;
+    border-color: #00ff00;
+}
+
+/* 4x4 Grid Layout for 16 Cards */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    perspective: 1000px; /* Enables 3D flipping effect */
+}
+
+.memory-card {
+    height: 110px; 
+    background: #2b2b2b;
+    border: 2px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+}
+
+/* Flip State */
+.memory-card.flipped {
+    transform: rotateY(180deg);
+    background: #ffffff;
+    border-color: #00ff00;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Stops the mirrored reverse-side from showing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* 3. Your Card Back (The default state) */
+.card-back {
+    background: #2b6cb0; 
+    border: 1px solid #2b6cb0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* New rule specifically for your logo */
+.card-back-logo {
+    width: 75%; /* Keeps the logo from touching the edges */
+    max-height: 80px; 
+    object-fit: contain;
+    opacity: 0.95; 
+}
+
+.memory-card:hover .card-back {
+    background: #1a365d;
+    border-color: #1a365d;
+}
+
+.card-front {
+    background: #ffffff; /* Gives it a clean white card look when flipped */
+    color: #111;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transform: rotateY(180deg); /* Pre-rotate the front face so it spins perfectly */
+}
+
+/* adjustment for real photos inside card game */
+.drink-img {
+    width: 100%;       
+    max-width: 65px;   
+    height: 65px;      
+    object-fit: contain; 
+    border-radius: 6px;  
+}
+
+/* --- THE ULTIMATE ARCADE BACKGROUND FIX --- */
+.game-board-wrapper {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important; /* Removes any hard box-shadow edges if they exist */
+}
+
+/* --- THE NUCLEAR OPTION: FORCE TRANSPARENCY OVER EVERYTHING INSIDE THE ARCADE --- */
+.arcade-section, 
+.arcade-section *, 
+#card-grid, 
+.game-board-wrapper {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* Re-ensure that your individual card faces STILL stay crisp and visible */
+.memory-card {
+    background: #2b2b2b !important;
+}
+.card-back {
+    background: #2b6cb0 !important;
+}
+.card-front {
+    background: #ffffff !important;
+}
+
+/* --- 1. REMOVE THE WHITE BORDER BETWEEN SECTIONS --- */
+/* --- UPDATED ARCADE SEAMLESS BLEED --- */
+.arcade-section {
+    padding: 60px 20px 90px 20px;
+    background-color: transparent;  
+    margin: 0;                 
+    border-top: none !important; /* Ensures the white line stays gone */
+}
+
+/* --- POLISHED WHITE CARD FRAME --- */
+/* --- CHUNK 1: EXPAND THE WRAPPER WIDTH SLIGHTLY --- */
+/* --- EXTRA BREATHING ROOM FOR THE WRAPPER CONTAINER --- */
+.game-board-wrapper {
+    background-color: #ffffff !important; 
+    border-radius: 16px;                  
+    padding: 40px; 
+    max-width: 900px;   /* Significantly widened to perfectly match your main story section widths */
+    margin: 0 auto;                       
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+}
+
+/* --- RESPONSIVE ONE-LINE TITLE TEXT --- */
+.game-board-wrapper h2 {
+    font-size: 2.2rem;  
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+    color: var(--accent-dark) !important; 
+    text-align: center;
+    white-space: normal; /* Removes the nasty forced side-clipping */
+    word-break: keep-all; /* Keeps single words intact while sitting beautifully on one line */
+}
+
+.arcade-subtitle {
+    color: #5a6270 !important; /* Soft dark slate color for high readability */
+    font-size: 1rem;
+    margin-bottom: 30px;
+    font-style: italic;
+    text-align: center;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark) !important; 
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding-bottom: 16px;
+}
+
+.game-controls span span {
+    color: #2b6cb0 !important; /* Sleek structural blue for gaming stats */
+    font-weight: 700;
+}
+
+/* --- INLINE KOPI IMAGE REPLACING THE EMOJI --- */
+/* --- PERFECTLY ALIGNED INLINE KOPI IMAGE --- */
+.title-inline-kopi {
+    height: 1.8em;                 /* Slightly increased size to match the heading weight */
+    width: auto;                   /* Maintains perfect proportions */
+    display: inline-block;
+    vertical-align: middle;        /* Baseline alignment anchor */
+    
+    /* 🚀 THE FIX: Pulls the cup up to counteract the tall steam whitespace */
+    transform: translateY(-15px);  
+    
+    margin-left: 1px;             /* Clean breathing gap between "Hirup" and the cup */
+    object-fit: contain;
+}
+
+/* --- DIGITAL QR MEMBERSHIP CARD --- */
+.member-qr-card {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    max-width: 320px;
+    margin: 20px auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.member-qr-card h3 {
+    color: #1a3c6d;
+    margin-bottom: 6px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.member-qr-card p {
+    font-size: 0.85rem;
+    color: #5a6270;
+    margin-bottom: 20px;
+}
+
+/* Centers the canvas perfectly inside the box frame */
+#qrcode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+}
+
+#member-id-text {
+    display: block;
+    margin-top: 12px;
+    font-family: monospace;
+    color: #a0aec0;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}

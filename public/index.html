@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirup Cafe | Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- CLEAN INTEGRATED COFFEE PALETTE --- */
+        .arcade-section {
+            padding: 90px 20px;
+            background-color: #fcfbf7; /* Soft cream background to transition from white */
+            color: #2d3748;            /* Matte charcoal for crisp readability */
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .arcade-section h2 {
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            color: #1a365d;            /* Deep slate blue header */
+        }
+
+        .arcade-subtitle {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Fixed Wrapper: No conflicting dark background panels */
+        .game-board-wrapper {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: transparent;   /* Let the natural section color handle it */
+        }
+
+        /* Elegant Minimalist Control Bar */
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #4a5568;
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 16px;
+        }
+
+        .game-controls span span {
+            color: #2b6cb0;            /* Slate blue accents for dynamic values */
+            font-weight: 700;
+        }
+
+        /* Clean Border Action Button */
+        .restart-game-btn {
+            padding: 8px 20px;
+            background: #2b6cb0;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease;
+        }
+        .restart-game-btn:hover {
+            background: #1a365d;
+        }
+
+        /* Grid Framework with No Padding Clipping */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            perspective: 1000px;
+            padding: 4px;
+        }
+
+        /* Main Interactive Card Base */
+        .memory-card {
+            height: 125px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Flip Action Toggle Rule */
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Clean Face Clamping with Ultimate Backface Leak Protection */
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* Safari support */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Card Back: The crisp slate-blue closed state option */
+        .card-back {
+            background: #2b6cb0; 
+            color: #ffffff;
+            font-size: 2.2rem;
+            border: 1px solid #2b6cb0;
+        }
+        .memory-card:hover .card-back {
+            background: #1a365d;
+            border-color: #1a365d;
+        }
+
+        /* Card Front: Clean white identity card when flipped */
+        .card-front {
+            background: #ffffff;
+            color: #2d3748;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: system-ui, sans-serif;
+            border: 2px solid #2b6cb0;
+            transform: rotateY(180deg); /* Counter-rotates text so it reads left-to-right */
+            padding: 12px 6px;
+            justify-content: space-between;
+        }
+
+        .drink-img {
+            width: auto;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 4px; /* Optional: smooth corners if your menu photos have backgrounds */
+        }
+
+        .drink-name-label {
+            margin-top: 6px;
+            text-align: center;
+            line-height: 1.3;
+            color: #2d3748;
+        }
+
+        /* --- CHUNK 2: AI ASSISTANT CHAT WIDGET STYLE --- */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999; /* Makes sure it floats on top of everything else */
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* The main floating toggle button */
+        .chat-toggle-btn {
+            background-color: #2b6cb0; /* Bright theme blue */
+            color: #ffffff;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .chat-toggle-btn:hover {
+            background-color: #1a3c6d; /* Deep ocean blue matching header */
+            transform: translateY(-2px);
+        }
+
+        /* The hidden/sliding chat interface pane */
+        .chat-window {
+            display: none; /* Controlled via JavaScript later */
+            flex-direction: column;
+            width: 360px;
+            height: 480px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            border: 1px solid #e2e8f0;
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            overflow: hidden;
+            animation: popUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Chat Window Header Pane matching ocean blue */
+        .chat-header {
+            background-color: #1a3c6d;
+            color: #ffffff;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            object-fit: contain;
+            padding: 2px;
+        }
+
+        .chat-header-info h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #ffffff;
+            font-family: system-ui, sans-serif;
+        }
+
+        .status-indicator {
+            font-size: 0.75rem;
+            color: #63b3ed; /* Vibrant neon tint */
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .close-chat-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .close-chat-btn:hover { opacity: 1; }
+
+        /* Dialog stream messages block */
+        .chat-messages-box {
+            flex: 1;
+            padding: 16px;
+            background-color: #f7fafc;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Barista message script bubble */
+        .assistant-msg {
+            background-color: #edf2f7;
+            color: #2d3748;
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
+
+        /* Customer client user chat bubble */
+        .user-msg {
+            background-color: #2b6cb0;
+            color: #ffffff;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
+        }
+
+        /* --- CHUNK 2: FIXED QUESTION BUBBLES CSS --- */
+        .chat-suggestions-area {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            padding: 12px;
+        }
+
+        .suggestion-title {
+            margin: 0 0 8px 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #718096;
+            font-weight: 700;
+        }
+
+        .suggestions-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        /* Styling individual question bubble buttons */
+        .suggest-btn {
+            background-color: #f7fafc;
+            color: #2b6cb0;
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .suggest-btn:hover {
+            background-color: #1a3c6d;
+            color: #ffffff;
+            border-color: #1a3c6d;
+            transform: translateX(2px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><img src="./images/logo-removebg.png" alt="Hirup Cafe Logo" class="nav-logo-img">HIRUP CAFE</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="auth.html" id="nav-auth-btn" class="cta-btn">Member Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Breathe in, Hirup deeply.</h1>
+        <p>Your cozy neighborhood spot in Seksyen 9, Shah Alam. Premium local beans, hand-crafted pastries, and an unforgettable digital loyalty experience.</p>
+        <a href="menu.html" class="btn-primary">Explore Our Menu</a>
+    </section>
+
+    <script src="js/main.js"></script>
+
+    <div class="story-environment-container">
+        
+        <div class="info-card">
+            <div class="info-card-text">
+                <h2>The Story of Hirup <img src="images/kopi.png" alt="Kopi Icon" class="title-inline-kopi"></h2>
+                <p>
+                    Derived from the local word meaning "to sip," <strong>Hirup Cafe</strong> was built as an escape from the digital rush. We believe that coffee isn't just fuel. It's an environment, a moment of presence, and a celebration of community right here in Shah Alam.
+                </p>
+            </div>
+            
+            
+            <div class="info-card-media">
+                <img src="./images/barista.jpeg" alt="Our Barista at Work" class="section-display-img" />
+            </div>
+        </div>
+
+        <div class="info-card reverse">
+            <div class="info-card-text">
+                <h2>Crafted Environment ✨💫</h2>
+                <p>
+                    From our signature dark roasts to our minimalist interior aesthetic, every corner is designed to inspire creators, students, and thinkers alike. Plug in your laptop, grab a pastry, and make yourself at home.
+                </p>
+            </div>
+            <div class="info-card-media">
+                <img src="./images/interior.jpeg" alt="Hirup Cafe Interior" class="section-display-img" />
+            </div>
+        </div>
+
+    </div>
+    </section>
+
+    <section class="arcade-section">
+
+        <div class="game-board-wrapper">
+            <h2>Match the Cards!</h2>
+            <div class="arcade-subtitle">Match our signature brews while you unwind.</div>
+            <div class="game-controls">
+                <span>Time: <span id="game-timer">00:00</span></span>
+                <span>Moves: <span id="game-moves">0</span></span>
+                <span>Rating: <span id="game-stars">⭐⭐⭐</span></span>
+                <button class="restart-game-btn" onclick="initGame()">Reset 🔄</button>
+            </div>
+
+            <div class="memory-grid" id="card-grid"></div>
+
+        </div>
+
+        <footer>
+        <p>&copy; 2026 Hirup Cafe. Made with coffee at Seksyen 9, Shah Alam.</p>
+    </footer>
+
+        <script>
+            // --- CHUNK 3: AI BARISTA ASSISTANT FUNCTIONALITY ---
+
+// --- CHUNK 3: FIXED QUESTION CLICK LOGIC ---
+
+function toggleChatWindow() {
+    const chatWindow = document.getElementById('chatWindow');
+    chatWindow.style.display = (chatWindow.style.display === 'flex') ? 'none' : 'flex';
+    if (chatWindow.style.display === 'flex') {
+        const msgBox = document.getElementById('chatMessages');
+        msgBox.scrollTop = msgBox.scrollHeight;
+    }
+}
+
+// Triggers when a user clicks any bubble button
+function askFixedQuestion(userDisplayQuestion, key) {
+    const messagesBox = document.getElementById('chatMessages');
+
+    // 1. Append the user's selected question as a text bubble
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user-msg';
+    userDiv.textContent = userDisplayQuestion;
+    messagesBox.appendChild(userDiv);
+    
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+
+    // 2. Respond instantly with the predefined Barista answers
+    setTimeout(() => {
+        const replyText = getBaristaFixedAnswer(key);
+        
+        const assistantDiv = document.createElement('div');
+        assistantDiv.className = 'message assistant-msg';
+        assistantDiv.textContent = replyText;
+        
+        messagesBox.appendChild(assistantDiv);
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+    }, 400); // 400ms delay to make it feel natural
+}
+
+// Pre-set database of premium responses
+function getBaristaFixedAnswer(key) {
+    switch(key) {
+        case 'menu':
+            return "Our current crowd favorites are our signature Salted Caramel Macchiato, Choco Croffle, and Street New York Hotdog! You can explore pricing on our Menu page above.";
+        case 'location':
+            return "We are located right in Seksyen 9, Shah Alam! It's a cozy space tailored for studying, hanging out, and catching up with friends.";
+        case 'hours':
+            return "We are open daily from 8:00 AM to 12:00 PM. Perfect for an early morning caffeine boost or a cozy late-night study session!";
+        case 'club':
+            return "Joining is super easy! Just scroll up to the top navigation header and click the 'Join Club' button to register your digital loyalty account and start earning drink rewards!";
+        default:
+            return "I'm always ready to help! Let me know what you'd like to discover about Hirup Cafe.";
+    }
+}
+            // Chunk 1: Your actual menu items and exact file paths
+            const drinkItems = [
+                { name: 'Caramel Macchiato', img: './images/Caramel Macchiato.png' },
+                { name: 'Lavender Latte', img: './images/Lavender Latte.png' },
+                { name: 'Italian Chocolate', img: './images/Italian Chocolate.png' },
+                { name: 'Matcha Latte', img: './images/Matcha Latte.png' },
+                { name: 'Rose Latte', img: './images/Rose Latte.png' },
+                { name: 'Kombucha', img: './images/Kombucha.png' },
+                { name: 'BBQ HotDog', img: './images/American BBQ HotDog.png' },
+                { name: 'Choco Croffle', img: './images/Chocolate French Croffle.png' }
+            ];
+
+            let cardsData = [...drinkItems, ...drinkItems];
+            let firstCard = null, secondCard = null;
+            let lockBoard = false;
+            let moves = 0;
+            let matchedPairs = 0;
+            
+            let timerInterval = null;
+            let totalSeconds = 0;
+            let gameStarted = false;
+
+            function initGame() {
+                firstCard = null;
+                secondCard = null;
+                lockBoard = false;
+                moves = 0;
+                matchedPairs = 0;
+                totalSeconds = 0;
+                gameStarted = false;
+                
+                clearInterval(timerInterval);
+                document.getElementById('game-timer').innerText = "00:00";
+                document.getElementById('game-moves').innerText = "0";
+                document.getElementById('game-stars').innerText = "⭐⭐⭐";
+
+                cardsData.sort(() => 0.5 - Math.random());
+
+                const grid = document.getElementById('card-grid');
+                grid.innerHTML = '';
+
+                // Chunk 4: Building the cards with your custom logo on the back
+                cardsData.forEach((item, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('memory-card');
+                    cardElement.dataset.name = item.name;
+                    cardElement.dataset.index = index;
+                    cardElement.addEventListener('click', flipCard);
+
+                    cardElement.innerHTML = `
+                        <div class="card-back">
+                            <img src="./images/logo-removebg.png" alt="Hirup Cafe" class="card-back-logo" />
+                        </div>
+                        <div class="card-front">
+                            <img src="${item.img}" alt="${item.name}" class="drink-img" />
+                            <div class="drink-name-label">${item.name}</div>
+                        </div>
+                    `;
+                    grid.appendChild(cardElement);
+                });
+            }
+
+            function startTimer() {
+                gameStarted = true;
+                timerInterval = setInterval(() => {
+                    totalSeconds++;
+                    let mins = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+                    let secs = (totalSeconds % 60).toString().padStart(2, '0');
+                    document.getElementById('game-timer').innerText = `${mins}:${secs}`;
+                }, 1000);
+            }
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this === firstCard) return;
+                
+                if (!gameStarted) startTimer();
+
+                this.classList.add('flipped');
+
+                if (!firstCard) {
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                trackMoves();
+                checkForMatch();
+            }
+
+            function checkForMatch() {
+                let isMatch = firstCard.dataset.name === secondCard.dataset.name;
+                isMatch ? disableCards() : unflipCards();
+            }
+
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+                matchedPairs++;
+
+                if (matchedPairs === drinkItems.length) {
+                    clearInterval(timerInterval);
+                    handleWin();
+                }
+
+                resetTurnPointer();
+            }
+
+            function unflipCards() {
+                lockBoard = true;
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                    resetTurnPointer();
+                }, 1000);
+            }
+
+            function resetTurnPointer() {
+                [firstCard, secondCard] = [null, null];
+                lockBoard = false;
+            }
+
+            function trackMoves() {
+                moves++;
+                document.getElementById('game-moves').innerText = moves;
+
+                const starNode = document.getElementById('game-stars');
+                if (moves > 16 && moves <= 24) {
+                    starNode.innerText = "⭐⭐";
+                } else if (moves > 24) {
+                    starNode.innerText = "⭐";
+                }
+            }
+
+            async function handleWin() {
+                const finalTime = document.getElementById('game-timer').innerText;
+                const finalStars = document.getElementById('game-stars').innerText;
+                const activeUser = localStorage.getItem('username') || "Guest Member";
+
+                alert(`Tahniah ${activeUser}! 🎉 You cleared the order deck in ${finalTime} with a rating of ${finalStars}!`);
+            }
+
+            initGame();
+        </script>
+    </section>
+    <div class="ai-chat-widget">
+        <button class="chat-toggle-btn" onclick="toggleChatWindow()">
+            <span>💬</span>
+            <span class="btn-text">Mr. Zebra Assistant</span>
+        </button>
+
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <img src="./images/logo-removebg.png" alt="Hirup Logo" class="chat-avatar">
+                    <div>
+                        <h3>Mr. Zebra</h3>
+                        <span class="status-indicator">Online & Brewing</span>
+                    </div>
+                </div>
+                <button class="close-chat-btn" onclick="toggleChatWindow()">✕</button>
+            </div>
+            
+            <div class="chat-messages-box" id="chatMessages">
+                <div class="message assistant-msg">
+                    Welcome! ☕ I'm your virtual assistant, Mr. Zebra. Click any of the topics below to learn more about our cozy spot!
+                </div>
+            </div>
+
+            <div class="chat-suggestions-area">
+                <p class="suggestion-title">Tap a question to ask:</p>
+                <div class="suggestions-grid">
+                    <button class="suggest-btn" onclick="askFixedQuestion('What is recommended on the menu?', 'menu')">☕ What's on the menu?</button>
+                    <button class="suggest-btn" onclick="askFixedQuestion('Where are you located?', 'location')">📍 Where are you located?</button>
+                    <button class="suggest-btn" onclick="askFixedQuestion('What are your operating hours?', 'hours')">🕒 Operating Hours?</button>
+                    <button class="suggest-btn" onclick="askFixedQuestion('How do I join the loyalty club?', 'club')">🎉 How to join the Club?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Run as soon as the home page loads up
+    window.addEventListener('DOMContentLoaded', () => {
+        const storedName = localStorage.getItem('username');
+        const token = localStorage.getItem('hirupToken');
+        const authBtn = document.getElementById('nav-auth-btn');
+
+        // If the user has an active login token session, update the home page navbar!
+        if (token && storedName && authBtn) {
+            authBtn.innerText = `Hi, ${storedName}! ☕`;
+            authBtn.href = 'dashboard.html'; // Redirects them straight to their lounge instead of login page
+            authBtn.style.background = '#1a3c6d'; // Changes button to your signature brand color
+            authBtn.style.color = '#ffffff';
+        }
+    });
+</script>
+</body>
+</html>

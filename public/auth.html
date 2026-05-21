@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirup Cafe - Member Access</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* --- AUTH HEADER CORRECTIONS --- */
+        header {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999 !important; /* Keeps navbar sitting perfectly above everything */
+            background-color: var(--primary-color) !important; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+
+        /* Clears the fixed navigation bar footprint seamlessly */
+        body {
+            padding-top: 160px !important; 
+            margin: 0;
+            
+            /* 🚀 THE ABSOLUTE GRADIENT FIX: Forces the canvas to stretch completely without repeating */
+            background: linear-gradient(to bottom, #4ba3e3 0%, #2b6cb0 40%, #1a3c6d 100%) !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+            background-size: cover !important;
+            min-height: 100vh; 
+        }
+
+        .auth-container {
+            max-width: 400px;
+            margin: 0 auto 60px auto; /* Cleans top margin layout collision */
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .auth-form h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2b2b2b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .auth-btn:hover {
+            background: #111;
+        }
+        
+        .toggle-text {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        #message-box {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/">
+                    <img src="./images/logo-removebg.png" alt="Hirup Zebra Logo" class="nav-logo-img">
+                    <span>HIRUP CAFE</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/menu">Menu</a></li>
+                <li><a href="/our-story">Our Story</a></li>
+                <li><a href="/contact" >Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div id="login-box" class="auth-form">
+            <h2>Hirup Member Login ☕</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+            <p class="toggle-text" onclick="toggleAuth()">Don't have an account? Register here</p>
+        </div>
+
+        <div id="register-box" class="auth-form" style="display: none;">
+            <h2>Join Hirup Club ✨</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="At least 6 characters" required>
+                </div>
+                <button type="submit" class="auth-btn">Register Membership</button>
+            </form>
+            <p class="toggle-text" onclick="toggleAuth()">Already a member? Log in here</p>
+        </div>
+
+        <div id="message-box"></div>
+    </div>
+
+    <script>
+        // Switch between showing Login and Registration views
+        function toggleAuth() {
+            const loginBox = document.getElementById('login-box');
+            const registerBox = document.getElementById('register-box');
+            const messageBox = document.getElementById('message-box');
+            messageBox.innerText = ""; // Clear notes on view toggle
+            
+            if (loginBox.style.display === "none") {
+                loginBox.style.display = "block";
+                registerBox.style.display = "none";
+            } else {
+                loginBox.style.display = "none";
+                registerBox.style.display = "block";
+            }
+        }
+
+        // --- SUBMIT REGISTRATION ---
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageBox = document.getElementById('message-box');
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    messageBox.style.color = "green";
+                    messageBox.innerText = data.message;
+                    document.getElementById('register-form').reset();
+                } else {
+                    messageBox.style.color = "red";
+                    messageBox.innerText = data.message || "Registration failed.";
+                }
+            } catch (error) {
+                messageBox.style.color = "red";
+                messageBox.innerText = "Error connecting to server.";
+            }
+        });
+
+        // --- SUBMIT LOGIN ---
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const messageBox = document.getElementById('message-box');
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageBox.style.color = "green";
+                    messageBox.innerText = data.message;
+                    
+                    // Save session tokens into browser memory safely
+                    localStorage.setItem('hirupToken', data.token);
+                    localStorage.setItem('username', data.user.username);
+                    localStorage.setItem('userId', data.user.id); 
+                    
+                    // Redirect to dashboard after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = '/dashboard.html';
+                    }, 1500);
+                    
+                    document.getElementById('login-form').reset();
+                } else {
+                    messageBox.style.color = "red";
+                    messageBox.innerText = data.message || "Login failed.";
+                }
+            } catch (error) {
+                console.error("Error connecting to server:", error);
+                messageBox.style.color = "red";
+                messageBox.innerText = "Error connecting to server.";
+            }
+        });
+    </script>
+</body>
+</html>

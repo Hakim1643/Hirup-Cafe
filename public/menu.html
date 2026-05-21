@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hirup Cafe | Menu</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Small internal styles helper just for the category anchors */
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .category-btn {
+            background-color: #f0f7fc;
+            color: var(--primary-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .category-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+        .menu-section {
+            margin-top: 1rem;
+            margin-bottom: 4rem;
+        }
+        .section-title {
+            margin-bottom: 1.5rem;
+            color: var(--accent-dark);
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html"><img src="./images/logo-removebg.png" alt="Hirup Cafe Logo" class="nav-logo-img">HIRUP CAFE</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html" class="cta-btn">Join Club</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="menu-categories">
+        <a href="#coffee" class="category-btn">☕ Coffee</a>
+        <a href="#non-coffee" class="category-btn">🍵 Non-Coffee</a>
+        <a href="#food" class="category-btn">🌭 Hotdogs & Croffles</a>
+    </div>
+
+    <main class="menu-section" style="max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 1rem;">
+        
+        <div id="coffee" style="margin-bottom: 4rem;">
+            <h2 class="section-title">Craft Coffee</h2>
+            <div class="menu-grid">
+                
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Mahogany Latte.png" alt="Mahogany Latte"></div>
+                    <div class="menu-info">
+                        <h3>Mahogany Latte</h3>
+                        <p>A deep, rich espresso layout with velvet textured milk and premium dark elements.</p>
+                        <span class="price">RM 13.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Caramel Macchiato.png" alt="Caramel Macchiato"></div>
+                    <div class="menu-info">
+                        <h3>Caramel Macchiato</h3>
+                        <p>Freshly steamed milk with vanilla-flavored syrup, marked with espresso and drizzled with caramel.</p>
+                        <span class="price">RM 14.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Lavender Latte.png" alt="Lavender Latte"></div>
+                    <div class="menu-info">
+                        <h3>Lavender Latte</h3>
+                        <p>A soothing, aromatic twist on our classic cafe latte infused with subtle organic lavender fields.</p>
+                        <span class="price">RM 14.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Rose Latte.png" alt="Rose Latte"></div>
+                    <div class="menu-info">
+                        <h3>Rose Latte</h3>
+                        <p>Fragrant rose infusion combined beautifully with rich espresso shots and smooth milk.</p>
+                        <span class="price">RM 14.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Salted Caramel Macchiato.png" alt="Salted Caramel Macchiato"></div>
+                    <div class="menu-info">
+                        <h3>Salted Caramel Macchiato</h3>
+                        <p>The perfect dynamic profile blend of rich sweet caramel sweetness and flaky sea salt highlights.</p>
+                        <span class="price">RM 15.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="non-coffee" style="margin-bottom: 4rem;">
+            <h2 class="section-title">Tea & Refreshers (Non-Coffee)</h2>
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Matcha Latte.png" alt="Matcha Latte"></div>
+                    <div class="menu-info">
+                        <h3>Matcha Latte</h3>
+                        <p>Premium artisan Uji matcha whisks layered naturally over fresh creamy milk.</p>
+                        <span class="price">RM 13.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Matcha Green Tea.png" alt="Matcha Green Tea"></div>
+                    <div class="menu-info">
+                        <h3>Matcha Green Tea</h3>
+                        <p>Pure, clarifying authentic ceremonial green tea brewed to clean aesthetic perfection.</p>
+                        <span class="price">RM 11.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Military Matcha Latte.png" alt="Military Matcha Latte"></div>
+                    <div class="menu-info">
+                        <h3>Military Matcha Latte</h3>
+                        <p>An intense, complex fusion layout matching rich matcha cocoa depths.</p>
+                        <span class="price">RM 15.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Kombucha.png" alt="Kombucha" style="object-position: 90% center;"></div>
+                    <div class="menu-info">
+                        <h3>Kombucha</h3>
+                        <p>Naturally fermented, fizzy, and packed with health-boosting live gut cultures.</p>
+                        <span class="price">RM 12.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Lemonade.png" alt="Lemonade"></div>
+                    <div class="menu-info">
+                        <h3>Fresh Lemonade</h3>
+                        <p>Zesty and brightly squeezed classic citrus pick-me-up served ice-chilled.</p>
+                        <span class="price">RM 9.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Matcha Lemonade.png" alt="Matcha Lemonade"></div>
+                    <div class="menu-info">
+                        <h3>Matcha Lemonade</h3>
+                        <p>An incredibly refreshing color split combining tart lemonade base with earthy matcha tops.</p>
+                        <span class="price">RM 13.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Italian Chocolate.png" alt="Italian Chocolate"></div>
+                    <div class="menu-info">
+                        <h3>Italian Chocolate</h3>
+                        <p>Decadent, extra-thick rich gourmet cocoa blend for the serious chocolate enthusiast.</p>
+                        <span class="price">RM 13.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="food" style="margin-bottom: 4rem;">
+            <h2 class="section-title">Gourmet Hot Dogs & French Pastries</h2>
+            <div class="menu-grid">
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/American BBQ HotDog.png" alt="American BBQ Hot Dog"></div>
+                    <div class="menu-info">
+                        <h3>American BBQ Hot Dog</h3>
+                        <p>Premium jumbo sausage nestled in a warm brioche bun, drenched in smokey BBQ glaze and crispy onions.</p>
+                        <span class="price">RM 14.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Street New York HotDog.png" alt="Street New York Hot Dog"></div>
+                    <div class="menu-info">
+                        <h3>Street New York Hot Dog</h3>
+                        <p>Classic deli-style preparation with spiced yellow mustard relish and signature sauerkraut layouts.</p>
+                        <span class="price">RM 14.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Original Butter French Croffle.png" alt="Original Butter Croissant"></div>
+                    <div class="menu-info">
+                        <h3>Original Butter Croissant</h3>
+                        <p>Flaky, multi-layered French pastry baked fresh daily with premium pure churned butter.</p>
+                        <span class="price">RM 8.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Chocolate French Croffle.png" alt="Chocolate French Croissant"></div>
+                    <div class="menu-info">
+                        <h3>Chocolate French Croissant</h3>
+                        <p>Our classic flaky puff profile pastry packed with elegant, molten dark chocolate rows.</p>
+                        <span class="price">RM 10.00</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-img"><img src="./images/Caramel Biscoff French Croffle.png" alt="Caramel Biscoff Croissant"></div>
+                    <div class="menu-info">
+                        <h3>Caramel Biscoff Croissant</h3>
+                        <p>Decadent croissant topped with crushed Lotus Biscoff biscuit crumbs and silky speculoos drizzle.</p>
+                        <span class="price">RM 12.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hirup Cafe. Made with coffee at Seksyen 9, Shah Alam.</p>
+    </footer>
+    <script src="js/main.js"></script>
+
+</body>
+</html>
