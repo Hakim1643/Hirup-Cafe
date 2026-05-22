@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* --- REMOVE BLUE CLICK FRAME FROM NAV BUTTON --- */
+        /* --- LOCK THE BUTTON TEXT AND BACKGROUND STYLING --- */
+        #nav-auth-btn.cta-btn,
+        #nav-auth-btn.cta-btn:focus,
+        #nav-auth-btn.cta-btn:active,
+        #nav-auth-btn.cta-btn:visited {
+            background-color: #1a3c6d !important; /* Force signature brand color */
+            color: #ffffff !important;            /* Force white text color */
+            outline: none !important;             /* Kill the default focus border */
+            box-shadow: none !important;           /* Kill any glowing shadows */
+            text-decoration: none !important;     /* Keep underline away */
+        }
+
+        /* Prevents iOS and Android from highlighting it with a flash block when tapped */
+        #nav-auth-btn.cta-btn {
+            -webkit-tap-highlight-color: transparent !important;
+            user-select: none; /* Prevents text highlighting on accidental double clicks */
+        }
         /* --- CLEAN INTEGRATED COFFEE PALETTE --- */
         .arcade-section {
             padding: 90px 20px;
