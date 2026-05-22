@@ -695,3 +695,144 @@ html {
     font-size: 0.75rem;
     letter-spacing: 0.5px;
 }
+
+/* ==========================================================================
+   📱 GLOBAL MOBILE RESPONSIVE ENGINE (FOR ALL PAGES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Reset Global Layout Containers */
+    body {
+        font-size: 15px; /* Slightly smaller base text for readable mobile density */
+        overflow-x: hidden; /* Prevents ugly horizontal shaking/scrolling */
+    }
+
+    /* 2. Unified Navigation Bar Scaling */
+    nav {
+        flex-direction: column !important;
+        padding: 15px 10px !important;
+        gap: 12px !important;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px 15px !important;
+        padding: 0 !important;
+        width: 100%;
+    }
+
+    .nav-links li a {
+        font-size: 0.9rem !important;
+        padding: 6px 4px !important;
+    }
+
+    /* Keep our capsule button sleek on mobile headers */
+    #nav-auth-btn.cta-btn {
+        padding: 6px 14px !important;
+        font-size: 0.85rem !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 3. Global Section Elements (Hero, Content Blocks) */
+    .hero {
+        padding: 60px 20px !important;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero p {
+        font-size: 0.95rem !important;
+    }
+
+    /* 4. Multi-Column Content Layouts (Fixes "Our Story" Cards, Forms, Grids) */
+    .story-environment-container,
+    .info-card,
+    .about-container,
+    .contact-container {
+        display: flex !important;
+        flex-direction: column !important; /* Stack them vertically instead of side-by-side */
+        padding: 20px 15px !important;
+        gap: 20px !important;
+    }
+
+    /* Reverse layout adjustments for alternating sections */
+    .info-card.reverse {
+        flex-direction: column !important; /* Forces normal top-down flow on mobile */
+    }
+
+    /* Make images and text containers take full width safely */
+    .info-card-text, 
+    .info-card-media,
+    .contact-form,
+    .map-container {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .section-display-img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 250px; /* Keeps images from occupying the whole phone screen */
+        object-fit: cover;
+    }
+
+    /* 5. Memory Game Scaling */
+    .arcade-section {
+        padding: 40px 10px !important;
+    }
+
+    .arcade-section h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .game-controls {
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 10px;
+        font-size: 0.85rem !important;
+    }
+
+    .memory-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .memory-card {
+        height: 85px !important;
+    }
+
+    .drink-img {
+        height: 42px !important;
+    }
+
+    .drink-name-label {
+        font-size: 0.55rem !important;
+    }
+
+    /* 6. AI Chat Widget Mobility Adjustment */
+    .chat-window {
+        width: calc(100vw - 40px) !important; /* Adapts cleanly to small phone screen widths */
+        height: 420px !important;
+        right: -10px !important;
+        bottom: 70px !important;
+    }
+    
+    .chat-toggle-btn {
+        padding: 10px 18px !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* 7. Footer Scaling */
+    footer {
+        padding: 20px 10px !important;
+        font-size: 0.8rem !important;
+    }
+}
