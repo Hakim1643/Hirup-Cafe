@@ -697,142 +697,139 @@ html {
 }
 
 /* ==========================================================================
-   📱 GLOBAL MOBILE RESPONSIVE ENGINE (FOR ALL PAGES)
+   📱 PIXEL-PERFECT GLOBAL MOBILE ENGINE (FOR ALL PAGES)
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* 1. Reset Global Layout Containers */
-    body {
-        font-size: 15px; /* Slightly smaller base text for readable mobile density */
-        overflow-x: hidden; /* Prevents ugly horizontal shaking/scrolling */
+    /* 1. Prevent screen shaking and unexpected horizontal side-scrolling */
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    /* 2. Unified Navigation Bar Scaling */
+    /* 2. Re-architect Navigation Layout to stack neatly */
     nav {
         flex-direction: column !important;
-        padding: 15px 10px !important;
-        gap: 12px !important;
-        text-align: center;
-    }
-
-    .nav-links {
-        flex-wrap: wrap !important;
+        align-items: center !important;
         justify-content: center !important;
-        gap: 10px 15px !important;
+        padding: 15px 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        gap: 14px !important;
+    }
+
+    /* Stack the links vertically so they don't look crowded or wrap weirdly */
+    .nav-links {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
         padding: 0 !important;
-        width: 100%;
+        margin: 0 !important;
+        gap: 12px !important;
     }
 
+    .nav-links li {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* Give plain text links clear space to tap */
     .nav-links li a {
-        font-size: 0.9rem !important;
-        padding: 6px 4px !important;
+        display: inline-block !important;
+        font-size: 1rem !important;
+        padding: 6px 16px !important;
+        width: auto !important;
     }
 
-    /* Keep our capsule button sleek on mobile headers */
+    /* 3. The Member Capsule Button Mobile Polish */
     #nav-auth-btn.cta-btn {
-        padding: 6px 14px !important;
-        font-size: 0.85rem !important;
-        display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
+        display: inline-block !important;
+        width: auto !important;
+        max-width: 85% !important; /* Prevents it stretching completely edge-to-edge */
+        margin: 4px auto 0 auto !important;
+        padding: 10px 24px !important; /* Slightly larger padding for a comfortable tap target */
+        font-size: 0.95rem !important;
+        border-radius: 50px !important;
+        text-align: center !important;
     }
 
-    /* 3. Global Section Elements (Hero, Content Blocks) */
+    /* 4. Global Structural Sections & Cards */
     .hero {
-        padding: 60px 20px !important;
-        text-align: center;
+        padding: 50px 16px !important;
+        box-sizing: border-box !important;
     }
 
     .hero h1 {
-        font-size: 2rem !important;
-        line-height: 1.2 !important;
+        font-size: 1.9rem !important;
+        line-height: 1.25 !important;
     }
 
-    .hero p {
-        font-size: 0.95rem !important;
-    }
-
-    /* 4. Multi-Column Content Layouts (Fixes "Our Story" Cards, Forms, Grids) */
     .story-environment-container,
     .info-card,
     .about-container,
     .contact-container {
         display: flex !important;
-        flex-direction: column !important; /* Stack them vertically instead of side-by-side */
-        padding: 20px 15px !important;
-        gap: 20px !important;
+        flex-direction: column !important;
+        padding: 16px !important;
+        gap: 24px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
     }
 
-    /* Reverse layout adjustments for alternating sections */
     .info-card.reverse {
-        flex-direction: column !important; /* Forces normal top-down flow on mobile */
+        flex-direction: column !important;
     }
 
-    /* Make images and text containers take full width safely */
     .info-card-text, 
     .info-card-media,
     .contact-form,
     .map-container {
         width: 100% !important;
         max-width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .section-display-img {
         width: 100% !important;
-        height: auto !important;
-        max-height: 250px; /* Keeps images from occupying the whole phone screen */
-        object-fit: cover;
+        max-height: 220px !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
     }
 
-    /* 5. Memory Game Scaling */
+    /* 5. Memory Game Compact Layout Fixes */
     .arcade-section {
-        padding: 40px 10px !important;
-    }
-
-    .arcade-section h2 {
-        font-size: 1.8rem !important;
-    }
-
-    .game-controls {
-        flex-wrap: wrap;
-        justify-content: center !important;
-        gap: 10px;
-        font-size: 0.85rem !important;
+        padding: 30px 10px !important;
     }
 
     .memory-grid {
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px !important;
+        gap: 6px !important;
+        padding: 2px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .memory-card {
-        height: 85px !important;
+        height: 75px !important; /* Keeps cards cleanly on screen without pushing footer away */
     }
 
     .drink-img {
-        height: 42px !important;
+        height: 36px !important;
     }
 
     .drink-name-label {
-        font-size: 0.55rem !important;
+        font-size: 0.5rem !important;
+        line-height: 1.1 !important;
     }
 
-    /* 6. AI Chat Widget Mobility Adjustment */
+    /* 6. Fix Chat Window Overflow on ultra-thin screens */
     .chat-window {
-        width: calc(100vw - 40px) !important; /* Adapts cleanly to small phone screen widths */
-        height: 420px !important;
+        width: calc(100vw - 32px) !important;
+        left: auto !important;
         right: -10px !important;
-        bottom: 70px !important;
-    }
-    
-    .chat-toggle-btn {
-        padding: 10px 18px !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* 7. Footer Scaling */
-    footer {
-        padding: 20px 10px !important;
-        font-size: 0.8rem !important;
+        max-height: 400px !important;
     }
 }

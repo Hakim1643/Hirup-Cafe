@@ -6,11 +6,16 @@ const nodemailer = require('nodemailer');
 const User = require('../models/User'); // Import our user structural blueprint
 
 // 1. CONFIGURE THE EMAIL TRANSPORTER (ONCE AT THE TOP)
+// 1. CONFIGURE THE EMAIL TRANSPORTER (SECURE VERSION)
+// 1. CONFIGURE THE EMAIL TRANSPORTER (CLOUD SERVER FIX)
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // Must be false for port 587 (it uses STARTTLS)
+    requireTLS: true,
     auth: {
-        user: 'hakim.hishammdtahir@gmail.com', // Replace with your cafe email account
-        pass: 'frsd mvnq wgev qhoh'       // Replace with your secure 16-character Google App Password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
