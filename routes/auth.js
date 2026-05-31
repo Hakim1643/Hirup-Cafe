@@ -6,20 +6,16 @@ const nodemailer = require('nodemailer');
 const User = require('../models/User'); // Import our user structural blueprint
 
 // 1. CONFIGURE THE EMAIL TRANSPORTER (ONCE AT THE TOP)
-// 1. CONFIGURE THE EMAIL TRANSPORTER (SECURE VERSION)
-// 1. CONFIGURE THE EMAIL TRANSPORTER (CLOUD SERVER FIX)
-// 1. CONFIGURE THE EMAIL TRANSPORTER (FORCE IPv4 ROUTING)
+// 1. CONFIGURE THE EMAIL TRANSPORTER (PORT 465 SSL OVERRIDE)
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, 
-    requireTLS: true,
+    port: 465,
+    secure: true, // TRUE for port 465 (enforces strict SSL)
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    // 🔥 THE MAGIC FIX: Forces the server to use IPv4 instead of IPv6
-    family: 4 
+    family: 4 // Still keeping IPv4 routing forced
 });
 
 // ==========================================
