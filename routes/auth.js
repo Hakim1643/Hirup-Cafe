@@ -8,15 +8,18 @@ const User = require('../models/User'); // Import our user structural blueprint
 // 1. CONFIGURE THE EMAIL TRANSPORTER (ONCE AT THE TOP)
 // 1. CONFIGURE THE EMAIL TRANSPORTER (SECURE VERSION)
 // 1. CONFIGURE THE EMAIL TRANSPORTER (CLOUD SERVER FIX)
+// 1. CONFIGURE THE EMAIL TRANSPORTER (FORCE IPv4 ROUTING)
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // Must be false for port 587 (it uses STARTTLS)
+    secure: false, 
     requireTLS: true,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
-    }
+    },
+    // 🔥 THE MAGIC FIX: Forces the server to use IPv4 instead of IPv6
+    family: 4 
 });
 
 // ==========================================
