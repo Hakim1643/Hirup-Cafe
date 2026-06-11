@@ -701,11 +701,19 @@ html {
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* 1. Prevent screen shaking and unexpected horizontal side-scrolling */
-    html, body {
+    /* 1. Prevent screen shaking while preserving Sticky Header functionality */
+    html {
         width: 100% !important;
         max-width: 100% !important;
-        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        /* Crucial: Removing overflow-x here keeps header sticky on mobile Chrome/Safari */
+    }
+
+    body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important; /* Keeps content bound neatly */
         margin: 0 !important;
         padding: 0 !important;
     }
@@ -721,7 +729,6 @@ html {
         gap: 14px !important;
     }
 
-    /* Stack the links vertically so they don't look crowded or wrap weirdly */
     .nav-links {
         flex-direction: column !important;
         align-items: center !important;
@@ -736,7 +743,6 @@ html {
         text-align: center !important;
     }
 
-    /* Give plain text links clear space to tap */
     .nav-links li a {
         display: inline-block !important;
         font-size: 1rem !important;
@@ -748,15 +754,15 @@ html {
     #nav-auth-btn.cta-btn {
         display: inline-block !important;
         width: auto !important;
-        max-width: 85% !important; /* Prevents it stretching completely edge-to-edge */
+        max-width: 85% !important;
         margin: 4px auto 0 auto !important;
-        padding: 10px 24px !important; /* Slightly larger padding for a comfortable tap target */
+        padding: 10px 24px !important;
         font-size: 0.95rem !important;
         border-radius: 50px !important;
         text-align: center !important;
     }
 
-    /* 4. Global Structural Sections & Cards */
+    /* 4. Global Structural Sections & White Cards (Fixes Padding Crush) */
     .hero {
         padding: 50px 16px !important;
         box-sizing: border-box !important;
@@ -765,6 +771,19 @@ html {
     .hero h1 {
         font-size: 1.9rem !important;
         line-height: 1.25 !important;
+    }
+
+    /* Content Wrapper (About/Contact pages) padding reduction */
+    .content-wrapper {
+        padding: 1.5rem !important;   /* Drops down from 3.5rem so content can expand */
+        margin: 2rem auto !important;
+        width: 92% !important;
+    }
+
+    /* Menu Grid Fix: Forces menu items to stack beautifully 1 per row */
+    .menu-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
     }
 
     .story-environment-container,
@@ -801,7 +820,17 @@ html {
 
     /* 5. Memory Game Compact Layout Fixes */
     .arcade-section {
-        padding: 30px 10px !important;
+        padding: 20px 5px !important;
+    }
+
+    /* Game Board Frame Room Override */
+    .game-board-wrapper {
+        padding: 20px 12px !important; /* Drops from 40px so grid has maximum screen width */
+        width: 96% !important;
+    }
+
+    .game-board-wrapper h2 {
+        font-size: 1.6rem !important; /* Prevents massive text from pushing borders */
     }
 
     .memory-grid {
@@ -813,7 +842,7 @@ html {
     }
 
     .memory-card {
-        height: 75px !important; /* Keeps cards cleanly on screen without pushing footer away */
+        height: 75px !important; 
     }
 
     .drink-img {
