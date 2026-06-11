@@ -701,65 +701,53 @@ html {
    ========================================================================== */
 @media (max-width: 768px) {
     
-    /* 1. Prevent screen shaking while preserving Sticky Header functionality */
-    html {
+    html, body {
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        /* Crucial: Removing overflow-x here keeps header sticky on mobile Chrome/Safari */
-    }
-
-    body {
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important; /* Keeps content bound neatly */
+        overflow-x: hidden !important; 
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    /* 2. Re-architect Navigation Layout to stack neatly */
+    /* THE MAGIC FIX: Un-stick the header on mobile so it doesn't block content */
+    header {
+        position: relative !important; 
+        padding: 1rem 0.5rem !important;
+    }
+
     nav {
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
-        padding: 15px 10px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-        gap: 14px !important;
+        gap: 15px !important;
     }
 
     .nav-links {
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px 20px !important; 
         width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
-        gap: 12px !important;
     }
 
     .nav-links li {
-        width: 100% !important;
-        text-align: center !important;
+        width: auto !important; /* Allows links to sit next to each other */
     }
 
     .nav-links li a {
         display: inline-block !important;
-        font-size: 1rem !important;
-        padding: 6px 16px !important;
-        width: auto !important;
+        font-size: 0.95rem !important;
+        padding: 4px 8px !important;
     }
 
-    /* 3. The Member Capsule Button Mobile Polish */
+   /* 3. The Member Capsule Button Mobile Polish */
     #nav-auth-btn.cta-btn {
         display: inline-block !important;
         width: auto !important;
-        max-width: 85% !important;
-        margin: 4px auto 0 auto !important;
-        padding: 10px 24px !important;
-        font-size: 0.95rem !important;
-        border-radius: 50px !important;
-        text-align: center !important;
+        margin: 5px auto 0 auto !important;
+        padding: 8px 24px !important;
+        font-size: 0.9rem !important;
     }
 
     /* 4. Global Structural Sections & White Cards (Fixes Padding Crush) */
